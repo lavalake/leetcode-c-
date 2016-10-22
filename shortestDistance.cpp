@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <map>
 using namespace std;
 class Solution {
 
@@ -8,10 +9,7 @@ class Solution {
 
     int shortestDistance(vector<string>& words, string word1, string word2) {
     
-            vector<int> index1;
-    
-            vector<int> index2;
-    
+ 	    map<string,vector<int> > words_map;
             int len = words.size();
     
             int dist = 0;
@@ -19,17 +17,14 @@ class Solution {
             int len1 = 0, len2 = 0;
     
             int mn = 0;
+
     
             for (int i=0; i<len; i++) {
-	    
-	                
-	    
-	                if (words[i] == word1) index1.push_back(i);
-	    
-	                if (words[i] == word2) index2.push_back(i);
+	    	words_map[words[i]].push_back(i);
 	    
 	            }
-    
+    	    vector<int> index1 = words_map[word1];
+	    vector<int> index2 = words_map[word2];
             dist = len - 1;
     
             len1 = index1.size() - 1;
